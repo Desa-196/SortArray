@@ -1,6 +1,21 @@
 ﻿int[,] a = { { 7, 3, 2 }, { 4, 9, 6 }, { 1, 8, 5 }};
 
 arraySort(a);
+arrayPrint(a);
+
+
+//Функция вывода двумерного массива
+void arrayPrint(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i, j] + "\t");
+        }
+        Console.Write("\n");
+    }
+}
 
 
 //Функция сортировки двумерного массива
