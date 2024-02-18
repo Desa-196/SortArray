@@ -1,4 +1,4 @@
-﻿int[,] a = { { 7, 3, 2 }, { 4, 9, 6 }, { 1, 8, 5 }};
+﻿int[,] a = { { 7, 3, 2 }, { 4, 9, 6 }, { 1, 8, 5 } };
 
 arraySort(a);
 arrayPrint(a);
@@ -26,12 +26,15 @@ void arraySort(int[,] array)
     {
         for (int j = 0; j < array.Length - 1; j++)
         {
-            Console.WriteLine($"{j / array.GetLength(1)}, {j % array.GetLength(1)}");
-            if (array[j / array.GetLength(1), j % array.GetLength(1)] > array[(j + 1) / array.GetLength(1), (j + 1) % array.GetLength(1)])
+            //Расчитываем и сохраняем в кортеж индексы текущего и следующего элементов
+            var currentElement = (row: j / array.GetLength(1), column: j % array.GetLength(1));
+            var nextElement = (row: (j + 1) / array.GetLength(1), column: (j + 1) % array.GetLength(1));
+
+            if (array[currentElement.row, currentElement.column] > array[nextElement.row, nextElement.column])
             {
-                temp = array[j / array.GetLength(1), j % array.GetLength(1)];
-                array[j / array.GetLength(1), j % array.GetLength(1)] = array[(j + 1) / array.GetLength(1), (j + 1) % array.GetLength(1)];
-                array[(j + 1) / array.GetLength(1), (j + 1) % array.GetLength(1)] = temp;
+                temp = array[currentElement.row, currentElement.column];
+                array[currentElement.row, currentElement.column] = array[nextElement.row, nextElement.column];
+                array[nextElement.row, nextElement.column] = temp;
             }
         }
     }
